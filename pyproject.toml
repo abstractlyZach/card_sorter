@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "card-sorter"
+version = "0.1.0"
+description = ""
+authors = ["abstractlyZach <zach3lee@gmail.com>"]
+readme = "README.md"
+packages = [{include = "card_sorter"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.3.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
