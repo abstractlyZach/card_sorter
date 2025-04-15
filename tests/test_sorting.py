@@ -1,6 +1,6 @@
 import pytest
 
-from card_sorter import cards
+from card_sorter import cards, collections
 
 sort_test_parameters = (
     "description,expected_smaller, expected_larger",
@@ -22,3 +22,34 @@ def test_sorting(description: str, expected_smaller: str, expected_larger: str):
     expected_smaller = cards.Card(expected_smaller)
     expected_larger = cards.Card(expected_larger)
     assert expected_smaller < expected_larger, description
+
+
+def test_create_a_collection():
+    collections.Collection(
+        [cards.Card("Isshin"), cards.Card("Boros Charm"), cards.Card("Opt")]
+    )
+
+
+example_collection_txt1 = "Boros Charm\nIsshin\nOpt"
+example_collection_txt2 = "Isshin\nMarneus Calgar\nTheoretical Duplication"
+
+collection_params = [
+    (
+        [cards.Card("Boros Charm"), cards.Card("Isshin"), cards.Card("Opt")],
+        example_collection_txt1,
+    ),
+    (
+        [
+            cards.Card("Isshin"),
+            cards.Card("Marneus Calgar"),
+            cards.Card("Theoretical Duplication"),
+        ],
+        example_collection_txt2,
+    ),
+]
+
+
+@pytest.mark.parametrize("cards, expected_collection_str", collection_params)
+def test_print_collection(cards: list[cards.Card], expected_collection_str: str):
+    collection = collections.Collection(cards)
+    assert str(collection) == expected_collection_str
