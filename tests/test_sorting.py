@@ -1,4 +1,5 @@
 import pytest
+
 from card_sorter import cards
 
 sort_test_parameters = (
