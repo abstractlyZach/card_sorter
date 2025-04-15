@@ -22,4 +22,3 @@ class Card:
 
     def __repr__(self) -> str:
         return f"Card({self._name})"
-
