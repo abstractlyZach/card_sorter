@@ -57,11 +57,7 @@ class Card:
         return self.name == other.name
 
     def __lt__(self, other: Card):
-        comparator_result = archidekt_name_comparator(self.name, other.name)
-        if comparator_result < 0:
-            return True
-        else:
-            return False
+        return archidekt_name_comparator(self.name, other.name) < 0
 
     def __str__(self) -> str:
         return self.name
