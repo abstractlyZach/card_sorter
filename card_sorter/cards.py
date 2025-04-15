@@ -16,3 +16,10 @@ class Card:
 
     def __lt__(self, other: Card):
         return self.name < other.name
+
+    def __str__(self) -> str:
+        return self.name
+
+    def __repr__(self) -> str:
+        return f"Card({self._name})"
+

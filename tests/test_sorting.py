@@ -1,11 +1,17 @@
+import pytest
 from card_sorter import cards
 
-def test_sorting():
-    first = cards.Card('Isshin, Two Heavens as One')
-    second = cards.Card('Marneus Calgar')
-    assert first < second
+sort_test_parameters = (
+        "description,expected_smaller, expected_larger",
+        [
+    ('', 'Isshin, Two Heavens as One', 'Marneus Calgar'),
+    ('', 'Radha, Heir to Keld', 'Svella, Ice Shaper'),
 
-def test_sorting_2():
-    first = cards.Card('Svella, Ice Shaper')
-    second = cards.Card('Radha, Heir to Keld')
-    assert second < first
+            ]
+        )
+
+@pytest.mark.parametrize(*sort_test_parameters)
+def test_sorting(description: str, expected_smaller: str, expected_larger:str):
+    expected_smaller = cards.Card(expected_smaller)
+    expected_larger = cards.Card(expected_larger)
+    assert expected_smaller < expected_larger
