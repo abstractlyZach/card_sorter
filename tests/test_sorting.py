@@ -6,7 +6,11 @@ sort_test_parameters = (
     [
         ("", "Isshin, Two Heavens as One", "Marneus Calgar"),
         ("", "Radha, Heir to Keld", "Svella, Ice Shaper"),
-        ("intentionally wrong oops", "Radha, Heir to Keld", "Apple"),
+        (
+            "Comma comes before apostrophe",
+            "Tamiyo, Collector of Tales",
+            "Tamiyo's Safekeeping",
+        ),
     ],
 )
 
