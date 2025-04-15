@@ -11,6 +11,7 @@ sort_test_parameters = (
             "Tamiyo, Collector of Tales",
             "Tamiyo's Safekeeping",
         ),
+        ("Spaces come after letters", "Sunblade Samurai", "Sun Titan"),
     ],
 )
 

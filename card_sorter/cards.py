@@ -6,7 +6,12 @@ SPECIAL_ORDERING = ",'"
 
 
 def archidekt_name_comparator(name1: str, name2: str) -> int:
-    """Recursively compare names using Archidekt's alphabetical ordering."""
+    """Recursively compare names using Archidekt's alphabetical ordering.
+
+    - Returns negative if name1 should come first in alphabetical order.
+    - Returns 0 if the names are the same.
+    - Returns positive otherwise.
+    """
     if len(name1) == 0 and len(name2) == 0:
         return 0
     elif len(name1) == 0:
@@ -26,6 +31,12 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
             return -1
         else:
             return 1
+
+    # Archidekt deprioritizes spaces
+    if name1_char == " ":
+        return 1
+    elif name2_char == " ":
+        return -1
 
     # default comparison
     if name1_char < name2_char:
