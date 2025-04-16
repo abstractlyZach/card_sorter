@@ -1,7 +1,6 @@
 import pytest
 
-import card_sorter.utils
-from card_sorter import cards, collections
+from card_sorter import cards, collections, utils
 
 sort_test_parameters = (
     "description,expected_smaller, expected_larger",
@@ -50,9 +49,9 @@ collection_params = [
 ]
 
 
-@pytest.mark.parametrize("cards, expected_collection_str", collection_params)
-def test_print_collection(cards: list[cards.Card], expected_collection_str: str):
-    collection = collections.Collection(cards)
+@pytest.mark.parametrize("cards_, expected_collection_str", collection_params)
+def test_print_collection(cards_, expected_collection_str: str):
+    collection = collections.Collection(cards_)
     assert str(collection) == expected_collection_str
 
 
@@ -67,15 +66,15 @@ CARD_NAMES = [
 
 
 def test_importing_card_names():
-    card_names = card_sorter.utils.read_card_names_from_txt(DATA_FILENAME)
+    card_names = utils.read_card_names_from_txt(DATA_FILENAME)
     assert card_names == CARD_NAMES
 
 
 def test_importing_cards():
-    test_cards = card_sorter.utils.get_cards_from_txt(DATA_FILENAME)
+    test_cards = utils.get_cards_from_txt(DATA_FILENAME)
     assert test_cards == [cards.Card(name) for name in CARD_NAMES]
 
 
 def test_importing_cards_to_collection():
-    collection = card_sorter.utils.get_collection_from_txt(DATA_FILENAME)
-    assert collection == card_sorter.utils.get_collection_from_card_names(CARD_NAMES)
+    collection = utils.get_collection_from_txt(DATA_FILENAME)
+    assert collection == utils.get_collection_from_card_names(CARD_NAMES)
