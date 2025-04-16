@@ -2,7 +2,9 @@
 # https://peps.python.org/pep-0563/#enabling-the-future-behavior-in-python-3-7
 from __future__ import annotations
 
-SPECIAL_ORDERING = ",'"
+PRIORITY_CHARS = ","
+INVISIBLE_CHARS = "'"
+UNPRIORITY_CHARS = " -"
 
 
 def archidekt_name_comparator(name1: str, name2: str) -> int:
@@ -12,37 +14,63 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
     - Returns 0 if the names are the same.
     - Returns positive otherwise.
     """
-    if len(name1) == 0 and len(name2) == 0:
-        return 0
-    elif len(name1) == 0:
-        return -1
-    elif len(name2) == 0:
-        return 1
+    zero_len_status = _handle_zero_len_names(name1, name2)
+    if zero_len_status != 2:
+        return zero_len_status
+
+    recursion_status = recurse_if_needed(name1, name2)
+    if recursion_status != 2:
+        return recursion_status
 
     first_char1, first_char2 = name1[0], name2[0]
-    if first_char1 == first_char2:
-        return archidekt_name_comparator(name1[1:], name2[1:])
 
-    # different chars
-    if first_char1 in SPECIAL_ORDERING and first_char2 in SPECIAL_ORDERING:
-        name1_char_index = SPECIAL_ORDERING.index(first_char1)
-        name2_char_index = SPECIAL_ORDERING.index(first_char2)
-        if name1_char_index < name2_char_index:
-            return -1
-        else:
-            return 1
-
-    # Archidekt deprioritizes spaces
-    if first_char1 == " ":
-        return 1
-    elif first_char2 == " ":
-        return -1
+    priority_status = _handle_priority(name1, name2)
+    if priority_status != 2:
+        return priority_status
 
     # default comparison
     if first_char1 < first_char2:
         return -1
     else:
         return 1
+
+
+def _handle_zero_len_names(name1: str, name2: str) -> int:
+    if len(name1) == 0 and len(name2) == 0:
+        return 0
+    elif len(name1) == 0:
+        return -1
+    elif len(name2) == 0:
+        return 1
+    return 2
+
+
+def recurse_if_needed(name1: str, name2: str) -> int:
+    first_char1, first_char2 = name1[0], name2[0]
+    if first_char1 in INVISIBLE_CHARS:
+        return archidekt_name_comparator(name1[1:], name2[:])
+    if first_char2 in INVISIBLE_CHARS:
+        return archidekt_name_comparator(name1[:], name2[1:])
+    if first_char1 == first_char2:
+        return archidekt_name_comparator(name1[1:], name2[1:])
+    return 2
+
+
+def _handle_priority(name1: str, name2: str):
+    """Assumes that first chars are not equal."""
+    first_char1, first_char2 = name1[0], name2[0]
+
+    if first_char1 in PRIORITY_CHARS:
+        return -1
+    if first_char2 in PRIORITY_CHARS:
+        return 1
+
+    if first_char1 in UNPRIORITY_CHARS:
+        return 1
+    if first_char2 in UNPRIORITY_CHARS:
+        return -1
+
+    return 2
 
 
 class Card:
