@@ -19,27 +19,27 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
     elif len(name2) == 0:
         return 1
 
-    name1_char, name2_char = name1[0], name2[0]
-    if name1_char == name2_char:
+    first_char1, first_char2 = name1[0], name2[0]
+    if first_char1 == first_char2:
         return archidekt_name_comparator(name1[1:], name2[1:])
 
     # different chars
-    if name1_char in SPECIAL_ORDERING and name2_char in SPECIAL_ORDERING:
-        name1_char_index = SPECIAL_ORDERING.index(name1_char)
-        name2_char_index = SPECIAL_ORDERING.index(name2_char)
+    if first_char1 in SPECIAL_ORDERING and first_char2 in SPECIAL_ORDERING:
+        name1_char_index = SPECIAL_ORDERING.index(first_char1)
+        name2_char_index = SPECIAL_ORDERING.index(first_char2)
         if name1_char_index < name2_char_index:
             return -1
         else:
             return 1
 
     # Archidekt deprioritizes spaces
-    if name1_char == " ":
+    if first_char1 == " ":
         return 1
-    elif name2_char == " ":
+    elif first_char2 == " ":
         return -1
 
     # default comparison
-    if name1_char < name2_char:
+    if first_char1 < first_char2:
         return -1
     else:
         return 1
