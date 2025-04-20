@@ -85,3 +85,13 @@ def test_same_cards_are_sorted():
         ]
     )
     assert cards.is_ordered(collection)
+
+
+def test_collection_with_1_card_is_sorted():
+    collection = utils.get_collection_from_card_names(["Agent of the Shadow Thieves"])
+    assert cards.is_ordered(collection)
+
+
+def test_collection_with_0_cards_is_sorted():
+    collection = utils.get_collection_from_card_names([])
+    assert cards.is_ordered(collection)
