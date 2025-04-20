@@ -27,3 +27,8 @@ them in my collection?
 * poetry
 * python dependencies (recommend using pipx)
     * pre-commit: run instructions at https://pre-commit.com/#quick-start
+
+# To Do:
+* write a csv reader
+* write a test to parse the current collection
+* write the packet test

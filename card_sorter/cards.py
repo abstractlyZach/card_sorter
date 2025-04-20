@@ -2,9 +2,18 @@
 # https://peps.python.org/pep-0563/#enabling-the-future-behavior-in-python-3-7
 from __future__ import annotations
 
+from card_sorter.collections import CardGroup
+
 PRIORITY_CHARS = ","
 INVISIBLE_CHARS = "'"
 UNPRIORITY_CHARS = " -"
+
+
+def is_ordered(cards: CardGroup):
+    for index in range(len(cards) - 1):
+        if cards[index] > cards[index + 1]:
+            return False
+    return True
 
 
 def archidekt_name_comparator(name1: str, name2: str) -> int:

@@ -24,6 +24,16 @@ class CardGroup(object):
     def __eq__(self, other: Collection) -> bool:
         return self._cards == other._cards
 
+    def __iter__(self):
+        for card in self._cards:
+            yield card
+
+    def __len__(self):
+        return len(self._cards)
+
+    def __getitem__(self, key):
+        return self._cards[key]
+
 
 class Collection(CardGroup):
     """A collection of Cards and Packets.
