@@ -7,12 +7,12 @@ from card_sorter.collections import CardGroup
 INVISIBLE_CHARS = ",- '"
 
 
-def is_ordered(cards: CardGroup, error=False):
-    for index in range(len(cards) - 1):
-        if cards[index] > cards[index + 1]:
+def is_ordered(cards_: CardGroup, error=False):
+    for index in range(len(cards_) - 1):
+        if cards_[index] > cards_[index + 1]:
             if error:
                 raise AssertionError(
-                    f"{cards[index]} does not come before {cards[index + 1]}"
+                    f"{cards_[index]} does not come before {cards_[index + 1]}"
                 )
             return False
     return True
