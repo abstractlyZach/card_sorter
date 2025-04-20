@@ -9,9 +9,13 @@ INVISIBLE_CHARS = "'"
 UNPRIORITY_CHARS = " -"
 
 
-def is_ordered(cards: CardGroup):
+def is_ordered(cards: CardGroup, error=True):
     for index in range(len(cards) - 1):
         if cards[index] > cards[index + 1]:
+            if error:
+                raise AssertionError(
+                    f"{cards[index]} does not come before {cards[index + 1]}"
+                )
             return False
     return True
 
