@@ -26,34 +26,16 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
     - Returns positive otherwise.
     """
     name1, name2 = name1.lower(), name2.lower()
-    zero_len_status = _handle_zero_len_names(name1, name2)
-    if zero_len_status != 2:
-        return zero_len_status
 
-    recursion_status = recurse_if_needed(name1, name2)
-    if recursion_status != 2:
-        return recursion_status
-
-    first_char1, first_char2 = name1[0], name2[0]
-
-    # default comparison
-    if first_char1 < first_char2:
-        return -1
-    else:
-        return 1
-
-
-def _handle_zero_len_names(name1: str, name2: str) -> int:
+    # base case: one or both strings have run out
     if len(name1) == 0 and len(name2) == 0:
         return 0
     elif len(name1) == 0:
         return -1
     elif len(name2) == 0:
         return 1
-    return 2
 
-
-def recurse_if_needed(name1: str, name2: str) -> int:
+    # ignore invisible chars by recursing to the next non-invisible char
     first_char1, first_char2 = name1[0], name2[0]
     if first_char1 in INVISIBLE_CHARS:
         return archidekt_name_comparator(name1[1:], name2[:])
@@ -61,7 +43,12 @@ def recurse_if_needed(name1: str, name2: str) -> int:
         return archidekt_name_comparator(name1[:], name2[1:])
     if first_char1 == first_char2:
         return archidekt_name_comparator(name1[1:], name2[1:])
-    return 2
+
+    # default comparison
+    if first_char1 < first_char2:
+        return -1
+    else:
+        return 1
 
 
 class Card:
