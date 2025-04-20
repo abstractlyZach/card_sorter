@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from card_sorter.collections import CardGroup
 
-PRIORITY_CHARS = ","
-INVISIBLE_CHARS = " '"
-UNPRIORITY_CHARS = "-"
+INVISIBLE_CHARS = ",- '"
 
 
 def is_ordered(cards: CardGroup, error=False):
@@ -38,10 +36,6 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
 
     first_char1, first_char2 = name1[0], name2[0]
 
-    priority_status = _handle_priority(name1, name2)
-    if priority_status != 2:
-        return priority_status
-
     # default comparison
     if first_char1 < first_char2:
         return -1
@@ -67,23 +61,6 @@ def recurse_if_needed(name1: str, name2: str) -> int:
         return archidekt_name_comparator(name1[:], name2[1:])
     if first_char1 == first_char2:
         return archidekt_name_comparator(name1[1:], name2[1:])
-    return 2
-
-
-def _handle_priority(name1: str, name2: str):
-    """Assumes that first chars are not equal."""
-    first_char1, first_char2 = name1[0], name2[0]
-
-    if first_char1 in PRIORITY_CHARS:
-        return -1
-    if first_char2 in PRIORITY_CHARS:
-        return 1
-
-    if first_char1 in UNPRIORITY_CHARS:
-        return 1
-    if first_char2 in UNPRIORITY_CHARS:
-        return -1
-
     return 2
 
 

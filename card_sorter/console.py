@@ -10,7 +10,7 @@ def main(csv_filename: str):
     collection = utils.get_collection_from_csv(csv_filename)
     # for card in collection:
     #     click.echo(card)
-    if cards.is_ordered(collection):
+    if cards.is_ordered(collection, error=True):
         click.echo("sorted!")
     else:
         click.echo("not sorted :(")

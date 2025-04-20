@@ -25,6 +25,11 @@ sort_test_parameters = (
             "You've Been Caught Stealing",
         ),
         ("Dash is later than letters", "Windgrace Acolyte", "Wind-Scarred Crag"),
+        (
+            "Commas and apostrophes are invisible",
+            "Nahiri's Machinations",
+            "Nahiri, the Harbinger",
+        ),
     ],
 )
 
