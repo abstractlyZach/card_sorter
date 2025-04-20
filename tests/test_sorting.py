@@ -12,7 +12,8 @@ sort_test_parameters = (
             "Tamiyo, Collector of Tales",
             "Tamiyo's Safekeeping",
         ),
-        ("Spaces come after letters", "Sunblade Samurai", "Sun Titan"),
+        ("Spaces are ignored", "Armor of Shadows", "Armory of Iroas"),
+        ("Case doesn't matter", "Sunblade Samurai", "Sun Titan"),
         (
             "Apostrophe is ignored pt. 1",
             "You're Confronted By Robbers",

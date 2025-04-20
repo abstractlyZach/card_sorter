@@ -5,11 +5,11 @@ from __future__ import annotations
 from card_sorter.collections import CardGroup
 
 PRIORITY_CHARS = ","
-INVISIBLE_CHARS = "'"
-UNPRIORITY_CHARS = " -"
+INVISIBLE_CHARS = " '"
+UNPRIORITY_CHARS = "-"
 
 
-def is_ordered(cards: CardGroup, error=True):
+def is_ordered(cards: CardGroup, error=False):
     for index in range(len(cards) - 1):
         if cards[index] > cards[index + 1]:
             if error:
@@ -27,6 +27,7 @@ def archidekt_name_comparator(name1: str, name2: str) -> int:
     - Returns 0 if the names are the same.
     - Returns positive otherwise.
     """
+    name1, name2 = name1.lower(), name2.lower()
     zero_len_status = _handle_zero_len_names(name1, name2)
     if zero_len_status != 2:
         return zero_len_status
