@@ -76,7 +76,7 @@ class Collection(CardGroup):
             if not self._packets[i].is_empty():
                 lines.append("\t" + str(self._packets[i]))
             lines.append(str(self._cards[i]))
-        if not self._packets[i].is_empty():
+        if not self._packets[i + 1].is_empty():
             lines.append("\t" + str(self._packets[i]))
         return "\n".join(lines)
 
