@@ -29,8 +29,6 @@ them in my collection?
     * pre-commit: run instructions at https://pre-commit.com/#quick-start
 
 # To Do:
-* write a test to parse the current collection
-* write the packet test
 * clean up utils. they're kinda messy. could separate into clearly layered input methods
 * add an invisible first and last card, make sure it shows up in ordering
 * make sure my system squashes duplicates. since we index on naming, binary search
