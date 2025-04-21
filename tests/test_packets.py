@@ -8,17 +8,6 @@ cards_to_add_next_to_each_other = utils.str_to_collection(
      Ollenbock Escort"""
 )
 
-
-@pytest.fixture
-def small_collection():
-    return utils.str_to_collection(
-        """Okiba Salvage
-        Omen of the Sea
-        Oni-Cult Anvil
-        Onward // Victory"""
-    )
-
-
 add_card_test_cases = [
     (cards.Card("Oliphaunt")),
     (cards.Card("One with Nothing")),
