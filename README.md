@@ -29,7 +29,7 @@ them in my collection?
     * pre-commit: run instructions at https://pre-commit.com/#quick-start
 
 # To Do:
-* add an invisible first and last card, make sure it shows up in ordering
+* x
 
 ## Maybe
 * reconsider having special classes for CardGroups. Aren't they really just lists?
