@@ -56,25 +56,34 @@ class Collection(CardGroup):
 
     def __init__(self, cards_=None):
         super().__init__(cards_)
-        self._packets = [
-            Packet(self._cards[i], self._cards[i + 1])
-            for i in range(len(self._cards) - 1)
-        ]
+        self._packets = []
+        if len(self._cards) < 1:
+            # Do nothing for 0-len collections
+            return
+        previous_card = cards.Card("<null card>")
+        for i in range(len(self._cards)):
+            new_packet = Packet(previous_card, self._cards[i])
+            previous_card = self._cards[i]
+            self._packets.append(new_packet)
+        new_packet = Packet(previous_card, cards.Card("<null card>"))
+        self._packets.append(new_packet)
 
     def __str__(self):
         if not self._cards:
             return "<No cards>"
         lines = []
-        for i in range(len(self._packets)):
-            lines.append(str(self._cards[i]))
+        for i in range(len(self._packets) - 1):
             if not self._packets[i].is_empty():
                 lines.append("\t" + str(self._packets[i]))
-        lines.append(str(self._cards[-1]))
+            lines.append(str(self._cards[i]))
+        if not self._packets[i].is_empty():
+            lines.append("\t" + str(self._packets[i]))
         return "\n".join(lines)
 
     def insert(self, card_: cards.Card) -> None:
-        # subtract 1 because packets are offset by 1 since they're in-betweens
-        insert_index = bisect.bisect_left(self._cards, card_) - 1
+        # push right one packet because packets are offset by 1 since they're in-betweens
+        # but it's also offset by the early packet so we good
+        insert_index = bisect.bisect_left(self._cards, card_)
         self._packets[insert_index].add(card_)
 
     def get_packets(self) -> list[Packet]:

@@ -85,3 +85,17 @@ Omen of the Sea
 Oni-Cult Anvil
 Onward // Victory"""
     )
+
+
+def test_packet_before_everything(small_collection):
+    small_collection.insert(cards.Card("Alpha Authority"))
+    my_packet = small_collection.get_packets()[0]
+    assert my_packet.card_before == cards.Card("<null card>")
+    assert my_packet.card_after == cards.Card("Okiba Salvage")
+
+
+def test_packet_after_everything(small_collection):
+    small_collection.insert(cards.Card("Zurgo Helmsmasher"))
+    my_packet = small_collection.get_packets()[0]
+    assert my_packet.card_before == cards.Card("Onward // Victory")
+    assert my_packet.card_after == cards.Card("<null card>")
