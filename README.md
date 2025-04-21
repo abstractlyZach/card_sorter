@@ -37,3 +37,4 @@ them in my collection?
 ## Maybe
 * reconsider having special classes for CardGroups. Aren't they really just lists?
 * clean up utils. they're kinda messy. could separate into clearly layered input methods
+* Move fixtures into a shared file
