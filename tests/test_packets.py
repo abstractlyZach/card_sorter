@@ -1,3 +1,5 @@
+import random
+
 import pytest
 
 from card_sorter import cards, utils
@@ -88,3 +90,17 @@ def test_packet_after_everything(small_collection):
     my_packet = small_collection.get_packets()[0]
     assert my_packet.card_before == cards.Card("Onward // Victory")
     assert my_packet.card_after == cards.Card("<null card>")
+
+
+def test_complex_packets(big_collection, removed_packets):
+    cards_to_add = []
+    for packet in removed_packets:
+        for card in packet:
+            cards_to_add.append(card)
+    random.shuffle(cards_to_add)
+
+    for card in cards_to_add:
+        big_collection.insert(card)
+
+    packets = big_collection.get_packets()
+    assert len(packets) == len(removed_packets)
