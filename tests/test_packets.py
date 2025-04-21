@@ -2,20 +2,20 @@ import pytest
 
 from card_sorter import cards, utils
 
-cards_to_add_next_to_each_other = utils.get_collection_from_card_names(
-    ["Oliphaunt", "Olivia, Crimson Bride", "Ollenbock Escort"]
+cards_to_add_next_to_each_other = utils.str_to_collection(
+    """Oliphaunt
+     Olivia, Crimson Bride
+     Ollenbock Escort"""
 )
 
 
 @pytest.fixture
 def small_collection():
-    return utils.get_collection_from_card_names(
-        [
-            "Okiba Salvage",
-            "Omen of the Sea",
-            "Oni-Cult Anvil",
-            "Onward // Victory",
-        ]
+    return utils.str_to_collection(
+        """Okiba Salvage
+        Omen of the Sea
+        Oni-Cult Anvil
+        Onward // Victory"""
     )
 
 
