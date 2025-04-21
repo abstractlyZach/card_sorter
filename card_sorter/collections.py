@@ -100,12 +100,7 @@ class Packet(CardGroup):
         self._card_after = card_after
 
     def __repr__(self):
-        to_return = "Packet("
-        num_cards_to_print = min(len(self._cards), 3)
-        for i in range(num_cards_to_print):
-            to_return += str(self._cards[i])
-        to_return += ")"
-        return to_return
+        return f"Packet({str(self._card_before)} to {str(self._card_after)})"
 
     def add(self, card_: cards.Card) -> None:
         self._cards.append(card_)
