@@ -16,7 +16,13 @@ class CardGroup(object):
     def __init__(self, cards_: list[cards.Card] = None):
         if cards_ is None:
             cards_ = []
-        self._cards = cards_
+        # deduplicate the list
+        seen = set()
+        self._cards = []
+        for i, card in enumerate(cards_):
+            if card not in seen:
+                self._cards.append(card)
+                seen.add(card)
 
     def __str__(self):
         if not self._cards:
