@@ -3,7 +3,6 @@ import pytest
 from card_sorter import cards, utils
 
 
-# set up as a fixture since it's mutable
 @pytest.fixture
 def small_collection():
     return utils.get_collection_from_card_names(
@@ -21,6 +20,14 @@ add_card_test_cases = [
     (cards.Card("One with Nothing")),
 ]
 
+
+@pytest.mark.parametrize("new_card", add_card_test_cases)
+def test_add_single_card_to_collection_shows_up_in_packet(small_collection, new_card):
+    small_collection.insert(new_card)
+    packets = small_collection.get_packets()
+    assert new_card in packets[0]
+
+
 ordering_test_cases = [
     (
         cards.Card("Oliphaunt"),
@@ -33,13 +40,6 @@ ordering_test_cases = [
         cards.Card("Oni-Cult Anvil"),
     ),
 ]
-
-
-@pytest.mark.parametrize("new_card", add_card_test_cases)
-def test_add_single_card_to_collection_shows_up_in_packet(small_collection, new_card):
-    small_collection.insert(new_card)
-    packets = small_collection.get_packets()
-    assert new_card in packets[0]
 
 
 @pytest.mark.parametrize(
