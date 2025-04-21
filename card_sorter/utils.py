@@ -40,4 +40,9 @@ def get_collection_from_csv(filename: str) -> collections.Collection:
 
 def str_to_collection(cards_: str) -> collections.Collection:
     """Creates a collection from newline-separated cards names."""
-    return get_collection_from_card_names(line.strip() for line in cards_.splitlines())
+    return get_collection_from_card_names(
+        line.strip()
+        for line in cards_.splitlines()
+        # make sure we don't add random empty lines
+        if len(line.strip()) > 0
+    )
