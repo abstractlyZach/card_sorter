@@ -25,6 +25,7 @@ add_card_test_cases = [
 def test_add_single_card_to_collection_shows_up_in_packet(small_collection, new_card):
     small_collection.insert(new_card)
     packets = small_collection.get_packets()
+    assert len(packets) == 1
     assert new_card in packets[0]
 
 
