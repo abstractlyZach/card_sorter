@@ -1,7 +1,7 @@
 all: format test lint
 
 test: poetry.lock
-	poetry run pytest
+	poetry run pytest -vv
 
 format: poetry.lock
 	# reformat all files
