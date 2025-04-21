@@ -29,10 +29,11 @@ them in my collection?
     * pre-commit: run instructions at https://pre-commit.com/#quick-start
 
 # To Do:
-* clean up utils. they're kinda messy. could separate into clearly layered input methods
 * add an invisible first and last card, make sure it shows up in ordering
 * make sure my system squashes duplicates. since we index on naming, binary search
   doesn't work because we might accidentally go between a run of same-named cards but end
   up splitting the packet.
+*
 ## Maybe
 * reconsider having special classes for CardGroups. Aren't they really just lists?
+* clean up utils. they're kinda messy. could separate into clearly layered input methods
